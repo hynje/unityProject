@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2241f7f4da4e24f41aa4a8e197eae3c0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mapData: {instanceID: 0}
+  - enemyPrefab1: {instanceID: 0}
+  - enemyPrefab2: {instanceID: 0}
+  - enemyPrefab3: {instanceID: 0}
+  - enemyPrefab4: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
