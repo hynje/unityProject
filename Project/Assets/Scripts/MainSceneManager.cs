@@ -7,6 +7,10 @@ public class MainSceneManager : MonoBehaviour
 {
     Camera cam;
     GameObject exitPanel;
+    public AudioClip start;
+    public AudioClip rank;
+    AudioSource aud;
+
     public float m_DoubleClickSecond = 0.25f;
     private bool m_IsOneClick = false;
     private double m_Timer = 0;
@@ -20,8 +24,10 @@ public class MainSceneManager : MonoBehaviour
     {
         cam = Camera.main;
         exitPanel = GameObject.Find("Exit");
+        aud = GetComponent<AudioSource>();
         exitPanel.SetActive(false);
         currentPos = cam.transform.position;
+        PlayAud(this.start);
     }
 
     void Update()
@@ -74,6 +80,10 @@ public class MainSceneManager : MonoBehaviour
                     {
                         nextPos = new Vector3(currentPos.x + 7, currentPos.y, currentPos.z);
                         cam.transform.position = nextPos;
+                        if (currentPos.x == 0)
+                            PlayAud(this.rank);
+                        else
+                            PlayAud(this.start);
                     }
                         
                 }
@@ -84,6 +94,7 @@ public class MainSceneManager : MonoBehaviour
                     {
                         nextPos = new Vector3(currentPos.x - 7, currentPos.y, currentPos.z);
                         cam.transform.position = nextPos;
+                        PlayAud(this.start);
                     }
                 }
             }
@@ -118,4 +129,8 @@ public class MainSceneManager : MonoBehaviour
         }
     }
 
+    void PlayAud(AudioClip aud_clip)
+    {
+        this.aud.PlayOneShot(aud_clip);
+    }
 }

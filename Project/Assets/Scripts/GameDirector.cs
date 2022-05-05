@@ -29,7 +29,7 @@ public class GameDirector : MonoBehaviour
         Timer();
     }
 
-    void Pause()
+    void Pause()    //일시정지
     {
         if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond)) { m_IsOneClick = false; }
         if (Input.GetMouseButtonDown(0))

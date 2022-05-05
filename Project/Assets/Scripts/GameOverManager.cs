@@ -10,15 +10,21 @@ public class GameOverManager : MonoBehaviour
     private bool m_IsOneClick = false;
     private double m_Timer = 0;
     private Vector2 initialPos;
+
+    public AudioClip game_over;
+    public AudioClip play_again;
+    AudioSource aud;
     void Start()
     {
-        
+        this.aud = GetComponent<AudioSource>();
+        this.aud.PlayOneShot(this.game_over);
+        Invoke("PlayAud", 2f);
     }
 
     void Update()
     {
         PlayAgain();
-
+        
         if (Input.GetMouseButtonDown(0))
         {
             initialPos = Input.mousePosition;
@@ -62,5 +68,10 @@ public class GameOverManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void PlayAud()
+    {
+        this.aud.PlayOneShot(this.play_again);
     }
 }
