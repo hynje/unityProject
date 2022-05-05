@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy1Controller : MonoBehaviour
 {
-    public AudioClip enemy1SE;
+    //public AudioClip enemy1SE;
     AudioSource aud;
     GameObject player;
     float moveSpeed = 2.0f;
@@ -33,6 +33,16 @@ public class Enemy1Controller : MonoBehaviour
         if(transform.position.y < -5.0f)
         {
             Destroy(gameObject);
+        }
+
+        //ÀÏ½ÃÁ¤Áö½Ã ¼Ò¸® ¸ØÃã
+        if (Time.timeScale == 0f)
+        {
+            this.aud.Pause();
+        }
+        else
+        {
+            this.aud.UnPause();
         }
     }
 }

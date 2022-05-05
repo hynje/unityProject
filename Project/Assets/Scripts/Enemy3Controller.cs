@@ -40,5 +40,15 @@ public class Enemy3Controller : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //¿œΩ√¡§¡ˆΩ√ º“∏Æ ∏ÿ√„
+        if (Time.timeScale == 0f)
+        {
+            this.aud.Pause();
+        }
+        else
+        {
+            this.aud.UnPause();
+        }
     }
 }

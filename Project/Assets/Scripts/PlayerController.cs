@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class PlayerController : MonoBehaviour
     private MapData mapData;
     Rigidbody2D rigid2D;
     Animator animator;
+    AudioSource aud;
     Vector3 mousePosition;
     Vector3 direction;
     float movespeed = 150f;
     void Start()
     {
+        aud = GetComponent<AudioSource>();
         rigid2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -31,5 +34,13 @@ public class PlayerController : MonoBehaviour
         {
             rigid2D.velocity = Vector2.zero;
         }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        Debug.Log("GameOver");
+        SceneManager.LoadScene("GameOverScene");
+        
+
     }
 }
