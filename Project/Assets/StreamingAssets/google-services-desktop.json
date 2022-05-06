@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "856468702829",
+    "project_id": "sample-d4cd2",
+    "firebase_url" : "https://sample-d4cd2-default-rtdb.firebaseio.com/",
+    "storage_bucket": "sample-d4cd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856468702829:android:12f7d0a01a3d14d618e164",
+        "android_client_info": {
+          "package_name": "com.abc.FBI"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856468702829-724k198vq3urscfuqrm33t7qc1aubb7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abc.FBI",
+            "certificate_hash": "aeb02e47d436970bb1f7b72f46aa1cd74fd51090"
+          }
+        },
+        {
+          "client_id": "856468702829-mke0pse0oe8b7bod29e2941osvhia83d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl3NTNaLDUDM7eYdb_-hO8CQKFjkREOsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856468702829-mke0pse0oe8b7bod29e2941osvhia83d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
