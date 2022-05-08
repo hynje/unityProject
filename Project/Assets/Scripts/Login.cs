@@ -141,4 +141,19 @@ public class Login : MonoBehaviour
     }
 
     private void AddToInformation(string str) { infoText.text += "\n" + str; }
+
+
+    // DB Å×ÀÌºí
+    /*public class User
+   {
+       public string username;
+       public Boolean tutorial_state;
+       public int highscore;
+       public int score;
+
+       public User()
+       {
+           this.user
+       }
+   } */
 }

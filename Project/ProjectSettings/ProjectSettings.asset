@@ -248,7 +248,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Unity/user.keystore
+  AndroidKeystoreName: '{inproject}: user.keystore'
   AndroidKeyaliasName: fbi
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -852,11 +852,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 5768aea4-6baa-490e-ba35-00f037691e9a
+  cloudProjectId: 1fd42194-6259-4853-be21-e0d7bdc5d349
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Project
-  organizationId: hjyoon573
+  projectName: Project (1)
+  organizationId: zxcv1126
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
