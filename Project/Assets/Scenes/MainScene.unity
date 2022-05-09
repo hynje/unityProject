@@ -230,7 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 8300000, guid: bc7dbe1de95d212468f110e2ffad331c, type: 3}
-  rank: {fileID: 8300000, guid: abe777d6127f7f94bafa0ed978681d7c, type: 3}
+  tutorial: {fileID: 8300000, guid: b9e8c7c8dcd33d345b6c824e46b763bf, type: 3}
+  rank: {fileID: 8300000, guid: b59acf7798d159242b88ba89d45ba02e, type: 3}
   m_DoubleClickSecond: 0.25
 --- !u!4 &342803833
 Transform:

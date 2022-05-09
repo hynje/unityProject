@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //터치한 곳으로 플레이어 이동
-        if ( Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             animator.SetTrigger("TouchTrigger");    //터치하면 애니메이션 재생
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -8,6 +8,7 @@ public class MainSceneManager : MonoBehaviour
     Camera cam;
     GameObject exitPanel;
     public AudioClip start;
+    public AudioClip tutorial;
     public AudioClip rank;
     AudioSource aud;
 
@@ -19,7 +20,7 @@ public class MainSceneManager : MonoBehaviour
     private Vector3 currentPos;
     private Vector3 nextPos;
 
-    private int exitcnt = 0;
+    private bool exitcnt = false;
     void Start()
     {
         cam = Camera.main;
@@ -32,7 +33,7 @@ public class MainSceneManager : MonoBehaviour
 
     void Update()
     {
-        if(exitcnt == 0)
+        if(!exitcnt)
         {
             PlayGame();
         }
@@ -94,7 +95,10 @@ public class MainSceneManager : MonoBehaviour
                     {
                         nextPos = new Vector3(currentPos.x - 7, currentPos.y, currentPos.z);
                         cam.transform.position = nextPos;
-                        PlayAud(this.start);
+                        if (currentPos.x == 0)
+                            PlayAud(this.tutorial);
+                        else
+                            PlayAud(this.start);
                     }
                 }
             }
@@ -105,18 +109,18 @@ public class MainSceneManager : MonoBehaviour
                     Debug.Log("Down");
                     Time.timeScale = 1f;
                     exitPanel.SetActive(false);
-                    exitcnt = 0;
+                    exitcnt = false;
                 }
                 else
                 {
                     Debug.Log("Up");
-                    if (exitcnt == 0)
+                    if (!exitcnt)
                     {
                         Time.timeScale = 0f;
                         exitPanel.SetActive(true);
-                        exitcnt = 1;
+                        exitcnt = true;
                     }
-                    else if (exitcnt == 1)
+                    else if (exitcnt)
                     {
 #if UNITY_EDITOR
                         UnityEditor.EditorApplication.isPlaying = false;
