@@ -59,8 +59,10 @@ public class MainSceneManager : MonoBehaviour
             else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
             {
                 m_IsOneClick = false;
-                if(currentPos.x == 0)
+                if (currentPos.x == 0)
                     SceneManager.LoadScene("GameScene");
+                else if (currentPos.x == -7)
+                    SceneManager.LoadScene("TutorialScene");
             }
         }
     }
