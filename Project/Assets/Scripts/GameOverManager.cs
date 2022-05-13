@@ -53,7 +53,7 @@ public class GameOverManager : MonoBehaviour
     {
         float disX = Mathf.Abs(initialPos.x - finalPos.x);
         float disY = Mathf.Abs(initialPos.y - finalPos.y);
-        if (disX > 0 || disY > 0)
+        if (disX > 200 || disY > 200)
         {
             if (disX < disY)
             {

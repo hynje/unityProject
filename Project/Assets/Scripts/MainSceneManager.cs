@@ -42,10 +42,12 @@ public class MainSceneManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             initialPos = Input.mousePosition;
+            Debug.Log(initialPos);
         }
         if (Input.GetMouseButtonUp(0))
         {
             Swipe(Input.mousePosition);
+            Debug.Log(initialPos);
         }
         
     }
@@ -72,7 +74,7 @@ public class MainSceneManager : MonoBehaviour
         float disX = Mathf.Abs(initialPos.x - finalPos.x);
         float disY = Mathf.Abs(initialPos.y - finalPos.y);
         currentPos = cam.transform.position;
-        if (disX > 0 || disY > 0)
+        if (disX > 200 || disY > 200)
         {
             if (disX > disY)
             {
