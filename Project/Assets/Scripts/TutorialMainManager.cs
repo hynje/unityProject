@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class TutorialMainManager : MonoBehaviour
 
     void Update()
     {
-        To_NextScene();
+        To_NextScene();     
     }
 
     IEnumerator Tutorial()
@@ -84,7 +85,13 @@ public class TutorialMainManager : MonoBehaviour
                 else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
                 {
                     m_IsOneClick = false;
+
+                    // string userId = "CGOKnuzOP4MBTqaT7x9HlU7gIiX2"; //test UID
+                    //RealtimeDatabase.Instance.chagneTutorialstate(userId);
+
+                    RealtimeDatabase.Instance.chagneTutorialstate(LoginManager.user.UserId);
                     SceneManager.LoadScene("MainScene");
+
                 }
             }
         }

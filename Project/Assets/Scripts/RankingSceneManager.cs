@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainSceneManager : MonoBehaviour
+
+public class RankingSceneManager : MonoBehaviour
 {
     Camera cam;
-    GameObject exitPanel;
-    public AudioClip start;
-    public AudioClip tutorial;
-    public AudioClip rank;
-    AudioSource aud;
+    GameObject all_1_panel;
+    GameObject all_2_panel;
+    GameObject personal_panel;
 
-    public float m_DoubleClickSecond = 0.25f;
-    private bool m_IsOneClick = false;
-    private double m_Timer = 0;
 
     private Vector2 initialPos;
     private Vector3 currentPos;
@@ -24,21 +20,23 @@ public class MainSceneManager : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        exitPanel = GameObject.Find("Exit");
-        aud = GetComponent<AudioSource>();
-        exitPanel.SetActive(false);
+        all_1_panel = GameObject.Find("all_1_panel");
+        all_2_panel = GameObject.Find("all_2_panel");
+        personal_panel = GameObject.Find("personal_panel");
+
+        all_1_panel.SetActive(true);
+        all_2_panel.SetActive(false);
+        personal_panel.SetActive(false);
         currentPos = cam.transform.position;
-        PlayAud(this.start);
     }
 
     void Update()
     {
-        if(!exitcnt)
+        if (!exitcnt)
         {
-            PlayGame();
+            //PlayGame();
         }
-        
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             initialPos = Input.mousePosition;
@@ -49,26 +47,7 @@ public class MainSceneManager : MonoBehaviour
             Swipe(Input.mousePosition);
             Debug.Log(initialPos);
         }
-        
-    }
 
-    void PlayGame()
-    {
-        if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond)) { m_IsOneClick = false; }
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!m_IsOneClick) { m_Timer = Time.time; m_IsOneClick = true; }
-            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
-            {
-                m_IsOneClick = false;
-                if (currentPos.x == 0)
-                    SceneManager.LoadScene("GameScene");
-                else if (currentPos.x == -7)
-                    SceneManager.LoadScene("TutorialScene");
-                else if (currentPos.x == 7)
-                    SceneManager.LoadScene("RankingScene");
-            }
-        }
     }
 
     void Swipe(Vector3 finalPos)
@@ -83,16 +62,27 @@ public class MainSceneManager : MonoBehaviour
                 if (initialPos.x > finalPos.x)
                 {
                     Debug.Log("Left");
-                    if(currentPos.x < 7)
+                    if (currentPos.x < 7)
                     {
                         nextPos = new Vector3(currentPos.x + 7, currentPos.y, currentPos.z);
                         cam.transform.position = nextPos;
                         if (currentPos.x == 0)
-                            PlayAud(this.rank);
+                        {
+                            all_1_panel.SetActive(false);
+                            all_2_panel.SetActive(true);
+                            personal_panel.SetActive(false);
+                        }
+
                         else
-                            PlayAud(this.start);
+                        {
+                            all_1_panel.SetActive(true);
+                            all_2_panel.SetActive(false);
+                            personal_panel.SetActive(false);
+                        }
+
+
                     }
-                        
+
                 }
                 else
                 {
@@ -102,9 +92,18 @@ public class MainSceneManager : MonoBehaviour
                         nextPos = new Vector3(currentPos.x - 7, currentPos.y, currentPos.z);
                         cam.transform.position = nextPos;
                         if (currentPos.x == 0)
-                            PlayAud(this.tutorial);
+                        {
+                            all_1_panel.SetActive(false);
+                            all_2_panel.SetActive(false);
+                            personal_panel.SetActive(true);
+                        }
+
                         else
-                            PlayAud(this.start);
+                        {
+                            all_1_panel.SetActive(true);
+                            all_2_panel.SetActive(false);
+                            personal_panel.SetActive(false);
+                        }
                     }
                 }
             }
@@ -114,7 +113,7 @@ public class MainSceneManager : MonoBehaviour
                 {
                     Debug.Log("Down");
                     Time.timeScale = 1f;
-                    exitPanel.SetActive(false);
+                    
                     exitcnt = false;
                 }
                 else
@@ -122,25 +121,20 @@ public class MainSceneManager : MonoBehaviour
                     Debug.Log("Up");
                     if (!exitcnt)
                     {
-                        Time.timeScale = 0f;
-                        exitPanel.SetActive(true);
+                        Time.timeScale = 0f;                     
                         exitcnt = true;
+                        
+
                     }
                     else if (exitcnt)
                     {
-#if UNITY_EDITOR
-                        UnityEditor.EditorApplication.isPlaying = false;
-#else
-                        Application.Quit();
-#endif
+                        SceneManager.LoadScene("MainScene");
                     }
                 }
             }
         }
     }
-
-    void PlayAud(AudioClip aud_clip)
-    {
-        this.aud.PlayOneShot(aud_clip);
-    }
 }
+
+
+

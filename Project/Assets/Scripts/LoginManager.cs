@@ -15,12 +15,12 @@ using Firebase.Database;
 using Firebase.Unity;
 
 public class LoginManager : MonoBehaviour
-{
+{   
     // Auth 용 instance
     FirebaseAuth auth = null;
 
     // 사용자 계정
-    FirebaseUser user = null;
+    public static FirebaseUser user = null;
 
     // 데이터를 쓰기 위한 reference 변수
     DatabaseReference reference;
@@ -28,12 +28,25 @@ public class LoginManager : MonoBehaviour
     // 기기 연동이 되어 있는 상태인지 체크한다.
     private bool signedIn = false;
 
-    private void Awake()
-    {
+    public static LoginManager instance;
 
+    public static LoginManager Instance
+    {
+        get { return instance; }
     }
 
-    private void Start()
+    private void Awake()
+    {
+        if (instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
+
+    public void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
@@ -183,9 +196,9 @@ public class LoginManager : MonoBehaviour
                     Debug.LogFormat("Google User signed in successfully: {0} ({1})", user.DisplayName, user.UserId);
 
                     Firebase.Auth.FirebaseUser newUser = authTask.Result;
-                    writeNewUser(newUser.UserId, newUser.DisplayName);
 
-                    SceneManager.LoadScene("MainScene");
+                    RealtimeDatabase.Instance.checkNewUser(newUser.UserId, newUser.DisplayName);
+                    //RealtimeDatabase.Instance.checkTutorial(newUser.UserId);
 
                     return;
                 });
@@ -301,9 +314,8 @@ public class LoginManager : MonoBehaviour
             Debug.LogFormat("Facebook User signed in successfully: {0} ({1})", user.DisplayName, user.UserId);
 
             Firebase.Auth.FirebaseUser newUser = task.Result;
-            writeNewUser(newUser.UserId, newUser.DisplayName);
-
-            SceneManager.LoadScene("MainScene");
+            RealtimeDatabase.Instance.checkNewUser(newUser.UserId, newUser.DisplayName);
+            //RealtimeDatabase.Instance.checkTutorial(newUser.UserId);
 
             return;
         });
@@ -323,32 +335,5 @@ public class LoginManager : MonoBehaviour
             auth.CurrentUser.DeleteAsync();
     }
 
-    public class User
-    {
-        public string username;
-        public bool tutorial_state;
-        public int highscore;
-        public int score;
-
-        public User() {
-        }
-
-        public User(string username, bool tutorial_state, int highscore, int score)
-        {
-            this.username = username;
-            this.tutorial_state = false;
-            this.highscore = highscore;
-            this.score = score;
-        }
-    }
-
-    void writeNewUser(string userId, string username)
-    {
-        User user = new User();
-        string json = JsonUtility.ToJson(user);
-        reference.Child("User").Child(userId).SetRawJsonValueAsync(json);
-        reference.Child("User").Child(userId).Child("username").SetValueAsync(username);
-
-    }
 
 }

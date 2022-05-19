@@ -19,9 +19,14 @@ public class GameOverManager : MonoBehaviour
         this.aud = GetComponent<AudioSource>();
         this.aud.PlayOneShot(this.game_over);
         Invoke("PlayAud", 2f);
-    }
 
-    void Update()
+        //string userId = "CGOKnuzOP4MBTqaT7x9HlU7gIiX2"; //test UID
+        //RealtimeDatabase.Instance.saveScore(userId);
+
+        RealtimeDatabase.Instance.saveScore(LoginManager.user.UserId);        
+}
+
+void Update()
     {
         PlayAgain();
         
@@ -74,4 +79,5 @@ public class GameOverManager : MonoBehaviour
     {
         this.aud.PlayOneShot(this.play_again);
     }
+    
 }

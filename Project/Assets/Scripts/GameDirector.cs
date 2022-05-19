@@ -12,7 +12,7 @@ public class GameDirector : MonoBehaviour
     public AudioClip to_main;
     AudioSource aud;
 
-    float time;
+    public float time;
     int minute, second;
 
     bool isPause;
@@ -22,6 +22,18 @@ public class GameDirector : MonoBehaviour
 
     private Vector2 initialPos;
     private bool exitcnt = false;
+
+
+    private static GameDirector instance;
+    public static GameDirector Instance
+    {
+        get { return instance; }
+    }
+    void Awake()
+    {        
+        instance = this;
+    }
+
     void Start()
     {
         this.timer = GameObject.Find("Timer");
