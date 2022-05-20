@@ -121,7 +121,7 @@ public class RankingSceneManager : MonoBehaviour
                     Debug.Log("Up");
                     if (!exitcnt)
                     {
-                        Time.timeScale = 0f;                     
+                        Time.timeScale = 1f;                     
                         exitcnt = true;
                         
 
