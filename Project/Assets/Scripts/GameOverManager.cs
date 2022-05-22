@@ -23,8 +23,8 @@ public class GameOverManager : MonoBehaviour
         this.aud.PlayOneShot(this.game_over);
         Invoke("PlayAud", 2f);
 
-        //string userId = "CGOKnuzOP4MBTqaT7x9HlU7gIiX2"; //test UID
-        //RealtimeDatabase.Instance.saveScore(userId);
+        // string userId = "1ldULXo86Jc7DvjF1O7GLe4DF8z1"; //test UID
+        // RealtimeDatabase.Instance.saveScore(userId);
 
         RealtimeDatabase.Instance.saveScore(LoginManager.user.UserId);        
 }

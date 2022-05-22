@@ -53,8 +53,6 @@ public class LoginManager : MonoBehaviour
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
                 Debug.Log("Firebase.DependencyStatus.Available");
-                // Create and hold a reference to your FirebaseApp,
-                // where app is a Firebase.FirebaseApp property of your application class.
                 //app = Firebase.FirebaseApp.DefaultInstance;
 
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
@@ -71,7 +69,6 @@ public class LoginManager : MonoBehaviour
             {
                 UnityEngine.Debug.LogError(System.String.Format(
                   "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                // Firebase Unity SDK is not safe to use here.
             }
         });
 
@@ -196,10 +193,8 @@ public class LoginManager : MonoBehaviour
                     Debug.LogFormat("Google User signed in successfully: {0} ({1})", user.DisplayName, user.UserId);
 
                     Firebase.Auth.FirebaseUser newUser = authTask.Result;
-
                     RealtimeDatabase.Instance.checkNewUser(newUser.UserId, newUser.DisplayName);
-                    //RealtimeDatabase.Instance.checkTutorial(newUser.UserId);
-
+                    RealtimeDatabase.Instance.checkTutorialstate(newUser.UserId);
                     return;
                 });
             }
@@ -315,8 +310,7 @@ public class LoginManager : MonoBehaviour
 
             Firebase.Auth.FirebaseUser newUser = task.Result;
             RealtimeDatabase.Instance.checkNewUser(newUser.UserId, newUser.DisplayName);
-            //RealtimeDatabase.Instance.checkTutorial(newUser.UserId);
-
+            RealtimeDatabase.Instance.checkTutorialstate(newUser.UserId);
             return;
         });
     }

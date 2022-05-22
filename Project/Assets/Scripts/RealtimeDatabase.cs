@@ -79,12 +79,10 @@ public class RealtimeDatabase : MonoBehaviour
                {
                    Debug.LogError("New User");
                    writeNewUser(userId, username);
-                   SceneManager.LoadScene("MainScene");
                }
                else
                {
                    Debug.LogError("not New User");
-                   SceneManager.LoadScene("TutorialScene");
                }
             });
     }        
@@ -115,39 +113,32 @@ public class RealtimeDatabase : MonoBehaviour
         }
     }
 
-
-    /*public void checkTutorial(string userId)
+    string nowtutorial;
+    string str1 = "true";
+    string str2 = "false";
+    public void checkTutorialstate(string userId)
     {
-        FirebaseDatabase.DefaultInstance.GetReference("User").Child(userId).GetValueAsync().ContinueWith(task =>
+        databaseReference.Child("User").Child(userId).Child("tutorial_state").GetValueAsync().ContinueWith(task =>
         {
             if (task.IsFaulted)
             {
                 Debug.LogError("Failed load tutorial data");
             }
+
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
 
-                foreach (DataSnapshot data in snapshot.Children)
-                {
-                    IDictionary userInfo = (IDictionary)data.Value;
-                    
-                    string nowtutorial = userInfo["tutorial_state"].ToString();
+                nowtutorial = Convert.ToString(snapshot.Value);
+                // Debug.Log(nowtutorial);
 
-                    if(nowtutorial == "true")
-                    {
-                        SceneManager.LoadScene("MainScene");
-                    }
-                    else if (nowtutorial == "false")
-                    {
-                        SceneManager.LoadScene("MainScene");
-                    }
-
-                }
+                if (string.Compare(nowtutorial, str1, true) == 0)
+                    SceneManager.LoadScene("MainScene");
+                else if (string.Compare(nowtutorial, str2, true) == 0)
+                    SceneManager.LoadScene("TutorialScene");
             }
         });
-
-    } */
+    }
 
     public void chagneTutorialstate(string userId)
     {
