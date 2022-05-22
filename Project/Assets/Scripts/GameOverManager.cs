@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
+    GameObject ScoreCanvas;
+
     public float m_DoubleClickSecond = 0.25f;
     private bool m_IsOneClick = false;
     private double m_Timer = 0;
@@ -16,6 +18,7 @@ public class GameOverManager : MonoBehaviour
     AudioSource aud;
     void Start()
     {
+        ScoreCanvas = GameObject.Find("ScoreCanvas");
         this.aud = GetComponent<AudioSource>();
         this.aud.PlayOneShot(this.game_over);
         Invoke("PlayAud", 2f);
@@ -49,6 +52,7 @@ void Update()
             else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
             {
                 m_IsOneClick = false;
+                Destroy(ScoreCanvas);
                 SceneManager.LoadScene("GameScene");
             }
         }

@@ -36,6 +36,7 @@ public class GameDirector : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         this.timer = GameObject.Find("Timer");
         this.pauseUi = GameObject.Find("Pause");
         aud = GetComponent<AudioSource>();
