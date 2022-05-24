@@ -73,6 +73,7 @@ void Update()
                 else
                 {
                     Debug.Log("Up");
+                    Destroy(ScoreCanvas);
                     SceneManager.LoadScene("MainScene");
                 }
             }
