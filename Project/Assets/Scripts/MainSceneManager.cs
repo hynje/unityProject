@@ -57,6 +57,7 @@ public class MainSceneManager : MonoBehaviour
         if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond)) { m_IsOneClick = false; }
         if (Input.GetMouseButtonDown(0))
         {
+            currentPos = cam.transform.position;
             if (!m_IsOneClick) { m_Timer = Time.time; m_IsOneClick = true; }
             else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
             {

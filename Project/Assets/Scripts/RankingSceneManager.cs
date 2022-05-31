@@ -10,7 +10,11 @@ public class RankingSceneManager : MonoBehaviour
     GameObject all_1_panel;
     GameObject all_2_panel;
     GameObject personal_panel;
+    AudioSource aud;
 
+    public AudioClip rank1;
+    public AudioClip rank2;
+    public AudioClip rankPersonal;
 
     private Vector2 initialPos;
     private Vector3 currentPos;
@@ -23,11 +27,14 @@ public class RankingSceneManager : MonoBehaviour
         all_1_panel = GameObject.Find("all_1_panel");
         all_2_panel = GameObject.Find("all_2_panel");
         personal_panel = GameObject.Find("personal_panel");
+        aud = GetComponent<AudioSource>();
 
         all_1_panel.SetActive(true);
         all_2_panel.SetActive(false);
         personal_panel.SetActive(false);
         currentPos = cam.transform.position;
+
+        PlayAud(this.rank1);
     }
 
     void Update()
@@ -71,6 +78,7 @@ public class RankingSceneManager : MonoBehaviour
                             all_1_panel.SetActive(false);
                             all_2_panel.SetActive(true);
                             personal_panel.SetActive(false);
+                            PlayAud(this.rank2);
                         }
 
                         else
@@ -78,6 +86,7 @@ public class RankingSceneManager : MonoBehaviour
                             all_1_panel.SetActive(true);
                             all_2_panel.SetActive(false);
                             personal_panel.SetActive(false);
+                            PlayAud(this.rank1);
                         }
 
 
@@ -96,6 +105,7 @@ public class RankingSceneManager : MonoBehaviour
                             all_1_panel.SetActive(false);
                             all_2_panel.SetActive(false);
                             personal_panel.SetActive(true);
+                            PlayAud(this.rankPersonal);
                         }
 
                         else
@@ -103,6 +113,7 @@ public class RankingSceneManager : MonoBehaviour
                             all_1_panel.SetActive(true);
                             all_2_panel.SetActive(false);
                             personal_panel.SetActive(false);
+                            PlayAud(this.rank1);
                         }
                     }
                 }
@@ -133,6 +144,11 @@ public class RankingSceneManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void PlayAud(AudioClip aud_clip)
+    {
+        this.aud.PlayOneShot(aud_clip);
     }
 }
 

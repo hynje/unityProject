@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class InfoSceneManager : MonoBehaviour
 {
+    AudioSource aud;
+
     void Start()
     {
-        Invoke("sceneChange", 3);
+        aud = GetComponent<AudioSource>();
+        Invoke("sceneChange", 9);
     }
 
     void sceneChange()

@@ -9,6 +9,7 @@ public class GameDirector : MonoBehaviour
 {
     GameObject timer;
     GameObject pauseUi;
+    GameObject ScoreCanvas;
     public AudioClip to_main;
     AudioSource aud;
 
@@ -39,6 +40,7 @@ public class GameDirector : MonoBehaviour
         Time.timeScale = 1;
         this.timer = GameObject.Find("Timer");
         this.pauseUi = GameObject.Find("Pause");
+        ScoreCanvas = GameObject.Find("ScoreCanvas");
         aud = GetComponent<AudioSource>();
         isPause = false;
         pauseUi.SetActive(false);
@@ -128,6 +130,7 @@ public class GameDirector : MonoBehaviour
                     else if (exitcnt)
                     {
                         Time.timeScale = 1;
+                        Destroy(ScoreCanvas);
                         SceneManager.LoadScene("MainScene");
                     }
                 }
